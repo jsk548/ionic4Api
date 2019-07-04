@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { apiService } from '../providers/apiService';
 
 @Component({
   selector: 'app-home',
@@ -6,7 +7,12 @@ import { Component } from '@angular/core';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
+  private data: any;
+  constructor(private api: apiService) {}
 
-  constructor() {}
-
+  ionViewDidEnter() {
+    this.api.getCurrentWeatherData().then((data)=>{
+      this.data = data;
+    });
+  }
 }
